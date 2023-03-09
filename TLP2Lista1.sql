@@ -77,3 +77,7 @@ FROM confeiteiro
 WHERE curso.modalidade = 'Bolos para casamento'
  AND ingrediente.nome = 'leite condensado';
 
+-- i) Apresente o nome de todos os doces que possuem "chocolate" no nome.
+SELECT nome 
+FROM doce
+WHERE nome LIKE '%chocolate%'
