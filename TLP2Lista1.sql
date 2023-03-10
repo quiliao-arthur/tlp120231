@@ -80,4 +80,4 @@ WHERE curso.modalidade = 'Bolos para casamento'
 -- i) Apresente o nome de todos os doces que possuem "chocolate" no nome.
 SELECT nome 
 FROM doce
-WHERE nome LIKE '%chocolate%'
+WHERE nome LIKE '%chocolate%';
