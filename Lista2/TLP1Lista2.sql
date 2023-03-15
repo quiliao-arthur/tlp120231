@@ -23,7 +23,7 @@ SELECT professor.nome ProfessoresDoutores,
  universidade.nome UniversidadeAtuacao
 FROM professor
  INNER JOIN universidade ON iduniversidade=universidade.id
-WHERE professor.titulacao = 'Doutorado';
+WHERE professor.titulacao = 'Doutor';
 
 --e) Apresente o nome das universidades que possuem professores que atuam na área de programação de computadores, que possuem mestrado e que ministram alguma disciplina com carga horária superior a 40 horas.
 SELECT DISTINCT universidade.nome 
@@ -32,7 +32,7 @@ FROM universidade
  INNER JOIN professor ON universidade.id=iduniversidade
  INNER JOIN disciplina ON professor.id=idprofessor
 WHERE professor.areadeatuacao = 'Programação de Computadores'
- AND professor.titulacao = 'Mestrado'
+ AND professor.titulacao = 'Mestre'
  AND disciplina.cargahoraria>40;
 
 --f) Apresente o nome de todos os cursos que possuem disciplinas ministradas por professores com mestrado que atuam na área de matemática. O curso apresenteado deve ter algum aluno do sexo masculino.
@@ -43,7 +43,7 @@ FROM curso
  INNER JOIN disciplinacurso ON curso.id=disciplinacurso.idcurso
  INNER JOIN disciplina ON iddisciplina=disciplina.id
  INNER JOIN professor ON idprofessor=professor.id
-WHERE professor.titulacao = 'Mestrado'
+WHERE professor.titulacao = 'Mestre'
  AND professor.areadeatuacao = 'Matemática'
  AND aluno.sexo = 'Masculino';
 
@@ -55,7 +55,20 @@ FROM universidade
  INNER JOIN disciplina ON professor.id=idprofessor
  INNER JOIN disciplinacurso ON disciplina.id=iddisciplina
  INNER JOIN curso ON idcurso=curso.id
-WHERE disciplina.nome='Ética'
+WHERE disciplina.nome = 'Ética'
  AND disciplina.cargahoraria=20
- AND curso.nome='Engenharia de computação';
- 
+ AND curso.nome='Engenharia de Computação';
+
+--h) Apresente o nome de cada aluno do sexo masculino cadastrado, junto com o nome do curso que ele está vinculado, o nome de toas as disciplinas vinculadas ao curso que ele escolheu, o nome do professor responsável por cada uma das disciplinas e o nome da universidade que o professor está vinculado.
+SELECT aluno.nome AlunoMasculino,
+ curso.nome Curso,
+ disciplina.nome Disciplinas,
+ professor.nome Professores,
+ universidade.nome Universidade
+FROM aluno
+ INNER JOIN curso ON aluno.idcurso=curso.id
+ INNER JOIN disciplinacurso ON curso.id=disciplinacurso.idcurso
+ INNER JOIN disciplina ON iddisciplina=disciplina.id
+ INNER JOIN professor ON idprofessor=professor.id
+ INNER JOIN universidade ON iduniversidade=universidade.id
+WHERE aluno.sexo='Masculino';
