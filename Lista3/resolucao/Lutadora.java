@@ -10,37 +10,37 @@ public class Lutadora{
     public Long getId(){
         return id;
     }
-    public void setId(Long novoId){
-        id=novoId;
+    public void setId(Long id){
+        this.id = id;
     }
     public int getIdade(){
         return idade;
     }
-    public void setIdade(int novaIdade){
-        idade=novaIdade;
+    public void setIdade(int idade){
+        this.idade = idade;
     }
     public double getPeso_kg(){
         return peso_kg;
     }
-    public void setPeso_kg(double novoPeso_kg){
-        peso_kg=novoPeso_kg;
+    public void setPeso_kg(double peso_kg){
+        this.peso_kg = peso_kg;
     }
     public double getAltura_m(){
         return altura_m;
     }
-    public void setAltura_m(double novaAltura_m){
-        altura_m=novaAltura_m;
+    public void setAltura_m(double altura_m){
+        this.altura_m = altura_m;
     }
     public String getNome(){
         return nome;
     }
-    public void setNome(String novoNome){
-        nome=novoNome;
+    public void setNome(String nome){
+        this.nome = nome;
     }
     public Equipe getEquipe(){
         return equipe;
     }
-    public void setEquipe(Equipe novaEquipe){
-        equipe=novaEquipe;
+    public void setEquipe(Equipe equipe){
+        this.equipe = equipe;
     }
 }
