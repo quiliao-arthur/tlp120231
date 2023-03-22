@@ -8,9 +8,9 @@ public class ConectaBanco{
     private static Connection con;
 
     public static Connection getConnection() {
-        url = "jdbc:postgresql://localhost:5432/postgres";//modifique aqui
+        url = "jdbc:postgresql://localhost:5432/main";//modifique aqui
         usuario = "postgres";//modifique aqui
-        senha = "1234";//modifique aqui
+        senha = "bORIS2019";//modifique aqui
         try {
             con = DriverManager.getConnection(url, usuario, senha);
         } catch (Exception e) {

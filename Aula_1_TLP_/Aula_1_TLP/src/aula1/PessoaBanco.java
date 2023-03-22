@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class PessoaBanco{
     //exemplo
-    /*
-    public void adicionar(objeto){
+    public void adicionar(Pessoa pessoa){
         try{
             Connection conexao = ConectaBanco.getConnection();
-            String sql = "insert into TABELA values(?, ?, ?)";
+            String sql = "insert into Pessoa values(?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, INFO));
+            statement.setString(1, pessoa.getNome());
+            statement.setInt(2, pessoa.getIdade());
             statement.execute();
             statement.close();
             conexao.close();
@@ -21,9 +21,7 @@ public class PessoaBanco{
             e.printStackTrace();
         }
     }
-    */
-
-    /*
+    /* 
     public ArrayList<TIPO> buscar(){
         
         Connection conexao = ConectaBanco.getConnection();
@@ -45,6 +43,6 @@ public class PessoaBanco{
                 e.printStackTrace();
         }
         return lista;
-    }       
+    }
     */
 }
