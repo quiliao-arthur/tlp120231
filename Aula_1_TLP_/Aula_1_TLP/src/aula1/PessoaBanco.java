@@ -9,7 +9,7 @@ public class PessoaBanco{
     public void adicionar(Pessoa pessoa){
         try{
             Connection conexao = ConectaBanco.getConnection();
-            String sql = "insert into Pessoa values(?, ?)";
+            String sql = "insert into Pessoa values(1, ?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setString(1, pessoa.getNome());
             statement.setInt(2, pessoa.getIdade());
