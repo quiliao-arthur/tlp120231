@@ -48,6 +48,14 @@ public class Lutadora {
     public Lutadora(){super();}
 
     public String toString(){
-        return "Atleta:\n-Nome: "+nome+"\n"
+        return "Atleta:\n-Nome: "+nome+"\n-Idade: "+idade+"\n-Peso(kg): "+peso_kg+"\n-Altura(cm): "+altura_cm+"\n-Equipe: "+equipe+"\n";
+    }
+
+    public boolean getByName(String nome){
+        if(this.nome.equals(nome)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

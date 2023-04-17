@@ -11,7 +11,9 @@ public class Aplicacao {
         ArrayList<Competidora> listaCompetidora = new ArrayList<Competidora>();
         Lutadora lutadora = new Lutadora();
         do{
-
+            /*
+             * Menu
+             */
             System.out.println("Sistema de Gerenciamento de Atletas e Competições:\n"+
                                 "1-) Cadastro de Atletas\n"+
                                 "2-) Atualização de status para afastamento\n"+
@@ -20,18 +22,23 @@ public class Aplicacao {
                                 "5-) Exibição de ranking de competidoras\n"+
                                 "6-) Atleta sem competição\n"+
                                 "0-) Sair");
-
             switch(escolha=(int) validaNumero(sc)){
-
+                /*
+                 * Não sei como faz laço comn try/catch lol
+                 */
                 case -1337:{
                     System.out.println("Algo deu muito errado.");
                     break;
                 }
-
+                /*
+                 * Saída da Aplicação
+                 */
                 case 0:{
                     break;
                 }
-
+                /*
+                 * Cadastro de Atletas
+                 */
                 case 1:{
                     System.out.println("Cadastro de Atleta!\n" +
                                         "Nome da atleta:");
@@ -47,7 +54,9 @@ public class Aplicacao {
                     listaLutadoras.add(lutadora);
                     break;
                 }
-
+                /*
+                 * Afastamento de Atletas
+                 */
                 case 2:{
                     System.out.println("Atualização de status para afastamento\n"+
                                         "Nome da atleta afastada:");
@@ -82,6 +91,7 @@ public class Aplicacao {
         boolean erro = false;
         do{
             try{
+                erro = false;
                 return Double.parseDouble(sc.nextLine());
             }catch(Exception e){
                 erro=true;
@@ -90,6 +100,5 @@ public class Aplicacao {
         }while(erro);
         return (double) -1337;
     }
-
-    
+   
 }
