@@ -64,7 +64,7 @@ public class EditoraBanco{
         for(int i=0; i<listaEditoras.size(); i++){
             if(listaEditoras.get(i).equals(editoraAlterando)){
 
-                String sql = "UPDATE Editora SET codigo=?, nome=? WHERE codigo=?";
+                String sql = "UPDATE Editora SET codigo=?, nome=? WHERE codigo=? AND nome=?";
 
                 try{
                     Connection connection = ConectaBanco.getConnection();
@@ -72,6 +72,7 @@ public class EditoraBanco{
                     statement.setInt(1, editoraGravando.getCodigo());
                     statement.setString(2, editoraGravando.getNome());
                     statement.setInt(3, editoraAlterando.getCodigo());
+                    statement.setString(4, editoraAlterando.getNome());
                     statement.execute();
                     statement.close();
                     connection.close();
@@ -102,6 +103,22 @@ public class EditoraBanco{
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void deletarPorObjeto(Editora editoraDeletando){
+        String sql = "DELETE FROM Editora INNER JOIN Livro ON Editora.codigo = livro.codigoEditora WHERE Editora.codigo=? AND Editora.nome=?";
+        
+        try{
+            Connection connection = ConectaBanco.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, editoraDeletando.getCodigo());
+            statement.setString(2, editoraDeletando.getNome());
+            statement.execute();
+            statement.close();
+            connection.close();
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }
