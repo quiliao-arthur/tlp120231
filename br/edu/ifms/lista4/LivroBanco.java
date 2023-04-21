@@ -59,6 +59,30 @@ public class LivroBanco{
         return null;
     }
 
+    public ArrayList<Livro> buscarPorEditora(int codigoEditora){
+        ArrayList<Livro> listaTodosLivros = this.buscarTudo();
+        ArrayList<Livro> listaLivrosEditora = new ArrayList<Livro>();
+
+        for(int i=0; i<listaTodosLivros.size(); i++){
+            if(listaTodosLivros.get(i).getEditora().getCodigo()==codigoEditora){
+                listaLivrosEditora.add(listaTodosLivros.get(i));
+            }
+        }
+        return listaLivrosEditora;
+    }
+
+    public ArrayList<Livro> buscarPorEditora(Editora editora){
+        ArrayList<Livro> listaTodosLivros = this.buscarTudo();
+        ArrayList<Livro> listaLivrosEditora = new ArrayList<Livro>();
+
+        for(int i=0; i<listaTodosLivros.size(); i++){
+            if(listaTodosLivros.get(i).getEditora().getCodigo()==editora.getCodigo()){
+                listaLivrosEditora.add(listaTodosLivros.get(i));
+            }
+        }
+        return listaLivrosEditora;
+    }
+
     public void alterarPorObjeto(Livro livroAlterando, Livro livroGravando){
         
         ArrayList<Livro> listaLivros = this.buscarTudo();

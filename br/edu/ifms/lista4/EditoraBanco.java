@@ -57,6 +57,30 @@ public class EditoraBanco{
         return null;
     }
 
+    public Editora buscarPorObjeto(Editora editora){
+
+        ArrayList<Editora> listaEditoras = this.buscarTudo();
+
+        for(int i=0; i<listaEditoras.size(); i++){
+            if(listaEditoras.get(i).equals(editora)){
+                return listaEditoras.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Editora buscarPorNome(String nome){
+
+        ArrayList<Editora> listaEditoras = this.buscarTudo();
+
+        for(int i=0; i<listaEditoras.size(); i++){
+            if(listaEditoras.get(i).getNome().equals(nome)){
+                return listaEditoras.get(i);
+            }
+        }
+        return null;
+    }
+
     public void alterarPorObjeto(Editora editoraAlterando, Editora editoraGravando){
         
         ArrayList<Editora> listaEditoras = this.buscarTudo();
