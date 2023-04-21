@@ -80,6 +80,7 @@ public class Main {
             System.out.println("Favor inserir o código da editora");
             editoraLivro=editoraBanco.buscarPorId(Integer.parseInt(sc.nextLine()));
             livroGravando.setEditora(editoraLivro);
+            
             livroBanco.adicionar(livroGravando);
         }
     }
