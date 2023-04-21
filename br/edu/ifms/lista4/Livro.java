@@ -36,6 +36,13 @@ public class Livro {
         this.editora=livro.getEditora();
     }
 
+    public Livro(int id, String nomeLivro, int anoPublicacao, int codigo, String nomeEditora){
+        this.id=id;
+        this.nome=nomeLivro;
+        this.anoPublicacao=anoPublicacao;
+        this.editora = new Editora(codigo, nomeEditora);
+    }
+
     public String toString(){
         return "Livro:\n Nome: "+nome+", Ano de Publicação: "+anoPublicacao+" "+editora.toString();
     }
@@ -51,7 +58,7 @@ public class Livro {
             }
     }
 
-    public boolean equals(int id){
+    public boolean hasId(int id){
         if(this.id==id){
             return true;
         }else{

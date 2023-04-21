@@ -121,4 +121,19 @@ public class EditoraBanco{
             e.printStackTrace();
         }
     }
+
+    public void deletarPorId(int codigo){
+        String sql = "DELETE FROM Editora INNER JOIN Livro ON Editora.codigo=codigoEditora WHERE Editora.codigo=?";
+         
+        try{
+            Connection connection = ConectaBanco.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, codigo);
+            statement.execute();
+            statement.close();
+            connection.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
