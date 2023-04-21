@@ -41,7 +41,7 @@ public class Editora {
             }
     }
 
-    public boolean equals(int codigo){
+    public boolean hasId(int codigo){
         if(this.codigo==codigo){
             return true;
         }else{
