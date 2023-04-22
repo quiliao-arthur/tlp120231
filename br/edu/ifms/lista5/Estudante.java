@@ -36,6 +36,13 @@ public class Estudante {
         this.cpf=cpf;
         this.curso=curso;
     }
+    public Estudante(int id, String nome, String cpf, int idCurso, String nomeCurso, int codigo, int duracaoH) {
+        super();
+        this.id=id;
+        this.nome=nome;
+        this.cpf=cpf;
+        this.curso=new Curso(idCurso, nomeCurso, codigo, duracaoH);
+    }
 
     public Estudante(Estudante estudante){
         super();

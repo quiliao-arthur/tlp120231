@@ -38,7 +38,7 @@ public class LivroBanco{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                listaLivros.add(new Livro(rs.getInt("id"), rs.getString("Livro.nome"), rs.getInt("anoPublicacao"), rs.getInt("Livro.codigo"), rs.getString("Livro.nome")));
+                listaLivros.add(new Livro(rs.getInt("id"), rs.getString("Livro.nome"), rs.getInt("anoPublicacao"), rs.getInt("Editora.codigo"), rs.getString("Editora.nome")));
             }
             rs.close();
             statement.close();

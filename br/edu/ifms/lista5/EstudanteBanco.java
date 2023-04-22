@@ -26,7 +26,7 @@ public class EstudanteBanco{
 
     public ArrayList<Estudante> buscarTudo(){
 
-        String sql = "SELECT * FROM Estudante INNER JOIN Estudante ON Estudante.codigo=codigoEstudante";
+        String sql = "SELECT * FROM Estudante INNER JOIN Curso ON idcuros=curso.id";
         ArrayList<Estudante> listaEstudantes = new ArrayList<Estudante>();
 
         try{
@@ -35,7 +35,7 @@ public class EstudanteBanco{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                listaEstudantes.add(new Estudante(rs.getInt("id"), rs.getString("Estudante.nome"), rs.getInt("anoPublicacao"), rs.getInt("Estudante.codigo"), rs.getString("Estudante.nome")));
+                listaEstudantes.add(new Estudante(rs.getInt("id"), rs.getString("Estudante.nome"), rs.getString("cpf"), rs.getInt("idCurso"), rs.getString("Curso.nome"), rs.getInt("Curso.codigo"), rs.getInt("duracaoH")));
             }
             rs.close();
             statement.close();
@@ -58,47 +58,46 @@ public class EstudanteBanco{
         return null;
     }
 
-    public ArrayList<Estudante> buscarPorEditora(int codigoEditora){
+    public ArrayList<Estudante> buscarPorCurso(int idCurso){
         ArrayList<Estudante> listaTodosEstudantes = this.buscarTudo();
-        ArrayList<Estudante> listaEstudantesEditora = new ArrayList<Estudante>();
+        ArrayList<Estudante> listaEstudantesCurso = new ArrayList<Estudante>();
 
         for(int i=0; i<listaTodosEstudantes.size(); i++){
-            if(listaTodosEstudantes.get(i).getEditora().getCodigo()==codigoEditora){
-                listaEstudantesEditora.add(listaTodosEstudantes.get(i));
+            if(listaTodosEstudantes.get(i).getCurso().hasId(idCurso)){
+                listaEstudantesCurso.add(listaTodosEstudantes.get(i));
             }
         }
-        return listaEstudantesEditora;
+        return listaEstudantesCurso;
     }
 
-    public ArrayList<Estudante> buscarPorEditora(Editora editora){
+    public ArrayList<Estudante> buscarPorCurso(Curso curso){
         ArrayList<Estudante> listaTodosEstudantes = this.buscarTudo();
-        ArrayList<Estudante> listaEstudantesEditora = new ArrayList<Estudante>();
+        ArrayList<Estudante> listaEstudantesCurso = new ArrayList<Estudante>();
 
         for(int i=0; i<listaTodosEstudantes.size(); i++){
-            if(listaTodosEstudantes.get(i).getEditora().getCodigo()==editora.getCodigo()){
-                listaEstudantesEditora.add(listaTodosEstudantes.get(i));
+            if(listaTodosEstudantes.get(i).getCurso().equals(curso)){
+                listaEstudantesCurso.add(listaTodosEstudantes.get(i));
             }
         }
-        return listaEstudantesEditora;
+        return listaEstudantesCurso;
     }
 
-    public void alterarPorObjeto(Estudante EstudanteAlterando, Estudante EstudanteGravando){
+    public void alterarPorObjeto(Estudante estudanteAlterando, Estudante estudanteGravando){
         
         ArrayList<Estudante> listaEstudantes = this.buscarTudo();
 
         for(int i=0; i<listaEstudantes.size(); i++){
-            if(listaEstudantes.get(i).equals(EstudanteAlterando)){
+            if(listaEstudantes.get(i).equals(estudanteAlterando)){
 
-                String sql = "UPDATE Estudante SET id=?, nome=?, anoPublicacao=?, codigoEditora=? WHERE id=?";
+                String sql = "UPDATE Estudante SET nome=?, cpf=?, idCurso=? WHERE id=?";
 
                 try{
                     Connection connection = ConectaBanco.getConnection();
                     PreparedStatement statement = connection.prepareStatement(sql);
-                    statement.setInt(1, EstudanteGravando.getId());
-                    statement.setString(2, EstudanteGravando.getNome());
-                    statement.setInt(3, EstudanteGravando.getAnoPublicacao());
-                    statement.setInt(4, EstudanteGravando.getEditora().getCodigo());
-                    statement.setInt(5, EstudanteAlterando.getId());
+                    statement.setString(1, estudanteGravando.getNome());
+                    statement.setString(2, estudanteGravando.getCpf());
+                    statement.setInt(3, estudanteGravando.getCurso().getId());
+                    statement.setInt(4, estudanteAlterando.getId());
                     statement.execute();
                     statement.close();
                     connection.close();
@@ -109,20 +108,20 @@ public class EstudanteBanco{
         }
     }
 
-    public void alterarPorId(int id, Estudante EstudanteGravando){
+    public void alterarPorId(int id, Estudante estudanteGravando){
         ArrayList<Estudante> listaEstudantes = this.buscarTudo();
 
         for(int i=0; i<listaEstudantes.size(); i++){
             if(listaEstudantes.get(i).hasId(id)){
-                String sql = "UPDATE Estudante SET id=?, nome=?, anoPublicacao=?, codigoEditora=? WHERE id=?";
+                String sql = "UPDATE Estudante SET id=?, nome=?, anoPublicacao=?, codigoCurso=? WHERE id=?";
 
                 try{
                     Connection connection = ConectaBanco.getConnection();
                     PreparedStatement statement = connection.prepareStatement(sql);
-                    statement.setInt(1, EstudanteGravando.getId());
-                    statement.setString(2, EstudanteGravando.getNome());
-                    statement.setInt(3, EstudanteGravando.getAnoPublicacao());
-                    statement.setInt(4, EstudanteGravando.getEditora().getCodigo());
+                    statement.setInt(1, estudanteGravando.getId());
+                    statement.setString(2, estudanteGravando.getNome());
+                    statement.setInt(3, estudanteGravando.getAnoPublicacao());
+                    statement.setInt(4, estudanteGravando.getCurso().getCodigo());
                     statement.setInt(5, id);
                     statement.execute();
                     statement.close();
