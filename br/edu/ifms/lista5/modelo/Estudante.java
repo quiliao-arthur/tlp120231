@@ -27,7 +27,13 @@ public class Estudante {
 
     public void setCurso(Curso curso) {this.curso=curso;}
 
-    public Estudante() {super();}
+    public Estudante() {
+        super();
+        id=0;
+        nome="";
+        cpf="";
+        curso=new Curso();
+    }
 
     public Estudante(int id, String nome, String cpf, Curso curso) {
         super();

@@ -26,7 +26,13 @@ public class Curso {
     
     public void setDuracaoH(int duracaoH) {this.duracaoH=duracaoH;}
 
-    public Curso(){super();}
+    public Curso(){
+        super();
+        id=0;
+        nome="";
+        codigo=0;
+        duracaoH=0;
+    }
 
     public Curso(int id, String nome, int codigo, int duracaoH){
         super();

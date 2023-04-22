@@ -137,7 +137,34 @@ public class Main {
 
     private static void atualizaEstudanteCurso(){
         try (Scanner sc = new Scanner(System.in)){
-            
+                       
+            EstudanteBanco estudanteBanco = new EstudanteBanco();
+            CursoBanco cursoBanco = new CursoBanco();
+            Estudante estudanteCorrigindo = new Estudante();
+            ArrayList<Estudante> listaEstudantes = estudanteBanco.buscarTudo();
+            ArrayList<Curso> listaCursos = cursoBanco.buscarTudo();
+            ArrayList<Curso> listaCursosBuscados = new ArrayList<Curso>();
+            Curso cursoMatriculando = new Curso();
+
+            System.out.println("Favor inserir o cpf do estudante cuja matrícula deve ser refeita:");
+            estudanteCorrigindo.setCpf(sc.nextLine());
+            for(int i=0; i<listaEstudantes.size(); i++) {
+                if(estudanteCorrigindo.getCpf().equals(listaEstudantes.get(i).getCpf())) {
+                    estudanteCorrigindo = listaEstudantes.get(i);
+                }
+            }
+            if(estudanteCorrigindo.getNome().equals(null)) {
+                System.out.println("Estudante não encontrado.");
+                return;
+            }
+            System.out.println("Favor inserir o nome do curso em que o estudante deseja se cadastrar:");
+            cursoMatriculando.setNome(sc.nextLine());
+            for(int i=0; i<listaCursos.size(); i++) {
+                if(cursoMatriculando.getNome().equals(listaCursos.get(i).getNome())){
+                    listaCursosBuscados.add(listaCursos.get(i));
+                }
+            }
+            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }
