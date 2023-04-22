@@ -1,10 +1,10 @@
 CREATE TABLE Editora{
-    codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+    codigo INTEGER PRIMARY KEY,
     nome VARCHAR(30)
 };
 
 CREATE TABLE Livro{
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
     nome VARCHAR(40),
     anoPublicacao INTEGER,
     codigoEditora INTEGER,

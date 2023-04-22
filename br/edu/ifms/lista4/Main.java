@@ -37,7 +37,7 @@ public class Main {
         }while(opcao!=0);
     }
     
-    public static int menu(){
+    private static int menu(){
         try (Scanner sc = new Scanner(System.in)) {
             System.out.println("Sistema Bibliotecário!\n"+
                                "Favor inserir a opção desejada:\n"+
@@ -52,7 +52,7 @@ public class Main {
         return -1;
     }
 
-    public static void cadastroEditora(){
+    private static void cadastroEditora(){
 
         try (Scanner sc = new Scanner(System.in)) {
             EditoraBanco editoraBanco = new EditoraBanco();
@@ -69,7 +69,7 @@ public class Main {
         }
     }
 
-    public static void cadastroLivro(){
+    private static void cadastroLivro(){
         try (Scanner sc = new Scanner(System.in)) {
             LivroBanco livroBanco = new LivroBanco();
             Livro livroGravando = new Livro();
@@ -88,7 +88,7 @@ public class Main {
         }
     }
 
-    public static void catalogoEditora(){
+    private static void catalogoEditora(){
         try (Scanner sc = new Scanner(System.in)){
             LivroBanco livroBanco = new LivroBanco();
             ArrayList<Livro> listaLivrosEditora = new ArrayList<Livro>();
