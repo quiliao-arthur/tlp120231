@@ -1,19 +1,21 @@
-package br.edu.ifms.lista4;
+package br.edu.ifms.lista4.banco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import br.edu.ifms.lista4.modelo.Livro;
+import br.edu.ifms.lista4.modelo.Editora;
+
 public class LivroBanco{
 
     public void adicionar(Livro livro){
         try{
             Connection connection = ConectaBanco.getConnection();
-            String sql = "INSERT INTO Livro VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Livro (nome, anoPublicacao, codigoEditora) VALUES (?, ?, ?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, livro.getId());
             statement.setString(2, livro.getNome());
             statement.setInt(3, livro.getAnoPublicacao());
             statement.setInt(4, livro.getEditora().getCodigo());

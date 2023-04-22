@@ -3,6 +3,9 @@ package br.edu.ifms.lista4;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.edu.ifms.lista4.banco.*;
+import br.edu.ifms.lista4.modelo.*;
+
 public class Main {
     public static void main(String[] args) {
 

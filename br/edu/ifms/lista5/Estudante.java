@@ -11,21 +11,21 @@ public class Estudante {
 
     private Curso curso;
 
-    private int getId() {return id;}
+    public int getId() {return id;}
 
-    private void setId(int id) {this.id=id;}
+    public void setId(int id) {this.id=id;}
 
-    private String getNome() {return nome;}
+    public String getNome() {return nome;}
 
-    private void setNome(String nome) {this.nome=nome;}
+    public void setNome(String nome) {this.nome=nome;}
 
-    private String getCpf() {return cpf;}
+    public String getCpf() {return cpf;}
 
-    private void setCpf(String cpf) {this.cpf=cpf;}
+    public void setCpf(String cpf) {this.cpf=cpf;}
 
-    private Curso getCurso() {return curso;}
+    public Curso getCurso() {return curso;}
 
-    private void setCurso(Curso curso) {this.curso=curso;}
+    public void setCurso(Curso curso) {this.curso=curso;}
 
     public Estudante() {super();}
 
@@ -43,5 +43,27 @@ public class Estudante {
         this.nome=estudante.getNome();
         this.cpf=estudante.getCpf();
         this.curso=estudante.getCurso();
+    }
+
+    public String toString() {
+        return "Estudante:\n Nome: "+nome+", Cpf: "+cpf+", "+curso.toString();
+    }
+
+    public boolean hasId(int id){
+        if(this.id==id){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean equals(Estudante estudante) {
+        if( this.id==estudante.getId() &&
+            this.nome.equals(estudante.getNome()) &&
+            this.cpf.equals(estudante.getCpf()) &&
+            this.curso.equals(estudante.getCurso()))
+            {
+                return true;
+            }
+        return false;
     }
 }

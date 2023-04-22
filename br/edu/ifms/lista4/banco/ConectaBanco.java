@@ -1,4 +1,4 @@
-package br.edu.ifms.lista4;
+package br.edu.ifms.lista4.banco;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

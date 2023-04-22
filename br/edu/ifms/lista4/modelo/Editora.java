@@ -1,4 +1,4 @@
-package br.edu.ifms.lista4;
+package br.edu.ifms.lista4.modelo;
 
 public class Editora {
     

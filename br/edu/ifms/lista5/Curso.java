@@ -22,9 +22,9 @@ public class Curso {
 
     public void setCodigo(int codigo) {this.codigo=codigo;}
 
-    private int getDuracaoH() {return duracaoH;}
+    public int getDuracaoH() {return duracaoH;}
     
-    private void setDuracaoH(int duracaoH) {this.duracaoH=duracaoH;}
+    public void setDuracaoH(int duracaoH) {this.duracaoH=duracaoH;}
 
     public Curso(){super();}
 

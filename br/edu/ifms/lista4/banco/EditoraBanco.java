@@ -1,9 +1,11 @@
-package br.edu.ifms.lista4;
+package br.edu.ifms.lista4.banco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import br.edu.ifms.lista4.modelo.Editora;
 
 public class EditoraBanco{
 
