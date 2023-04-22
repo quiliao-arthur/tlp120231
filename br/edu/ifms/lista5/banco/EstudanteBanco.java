@@ -1,9 +1,12 @@
-package br.edu.ifms.lista5;
+package br.edu.ifms.lista5.banco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import br.edu.ifms.lista5.modelo.Curso;
+import br.edu.ifms.lista5.modelo.Estudante;
 
 public class EstudanteBanco{
 
@@ -113,16 +116,15 @@ public class EstudanteBanco{
 
         for(int i=0; i<listaEstudantes.size(); i++){
             if(listaEstudantes.get(i).hasId(id)){
-                String sql = "UPDATE Estudante SET id=?, nome=?, anoPublicacao=?, codigoCurso=? WHERE id=?";
+                String sql = "UPDATE Estudante SET nome=?, cpf=?, idCurso=? WHERE id=?";
 
                 try{
                     Connection connection = ConectaBanco.getConnection();
                     PreparedStatement statement = connection.prepareStatement(sql);
-                    statement.setInt(1, estudanteGravando.getId());
-                    statement.setString(2, estudanteGravando.getNome());
-                    statement.setInt(3, estudanteGravando.getAnoPublicacao());
-                    statement.setInt(4, estudanteGravando.getCurso().getCodigo());
-                    statement.setInt(5, id);
+                    statement.setString(1, estudanteGravando.getNome());
+                    statement.setString(2, estudanteGravando.getCpf());
+                    statement.setInt(3, estudanteGravando.getCurso().getId());
+                    statement.setInt(4, id);
                     statement.execute();
                     statement.close();
                     connection.close();

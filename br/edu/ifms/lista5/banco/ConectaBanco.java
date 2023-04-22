@@ -1,4 +1,4 @@
-package br.edu.ifms.lista5;
+package br.edu.ifms.lista5.banco;
 
 
 import java.sql.Connection;

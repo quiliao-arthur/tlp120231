@@ -1,9 +1,11 @@
-package br.edu.ifms.lista5;
+package br.edu.ifms.lista5.banco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import br.edu.ifms.lista5.modelo.Curso;
 
 public class CursoBanco{
 

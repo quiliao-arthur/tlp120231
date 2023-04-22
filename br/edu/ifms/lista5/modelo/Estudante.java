@@ -1,4 +1,4 @@
-package br.edu.ifms.lista5;
+package br.edu.ifms.lista5.modelo;
 
 public class Estudante {
     
