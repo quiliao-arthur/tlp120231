@@ -12,33 +12,33 @@ public class Main {
     public static void main(String[] args) {
         int opcao = 0;
         do{
-            switch(opcao=menu()){
-                case -1:{
+            switch(opcao=menu()) {
+                case -1: {
                     System.out.println("Favor escrever um número");
                     break;
                 }
-                case 0:{
+                case 0: {
 
                     break;
                 }
-                case 1:{
+                case 1: {
                     cadastroCurso();
                     break;
                 }
-                case 2:{
+                case 2: {
                     cadastroEstudante();
                     break;
                 }
-                case 3:{
+                case 3: {
                     atualizaEstudanteCurso();
                     break;
                 }
-                case 4:{
+                case 4: {
                     exibirMatriculados();
                     aberturaCurso();
                     break;
                 }
-                case 5:{
+                case 5: {
                     exibirTudo();
                     break;
                 }
@@ -55,14 +55,14 @@ public class Main {
                                 "4- Exibir matriculados de curso e verificar viabilidade de abertura\n"+
                                 "5- Exibir todos os dados");
             return Integer.parseInt(sc.nextLine());
-        }catch(NumberFormatException e){
+        }catch(NumberFormatException e) {
             e.printStackTrace();
         }
         return -1;
     }
 
     private static void cadastroCurso(){
-        try (Scanner sc = new Scanner(System.in)){
+        try (Scanner sc = new Scanner(System.in)) {
             Curso curso = new Curso();
             CursoBanco cursoBanco = new CursoBanco();
             System.out.println("Favor inserir o nome do curso:");
@@ -76,7 +76,7 @@ public class Main {
     }
 
     private static void cadastroEstudante(){
-        try (Scanner sc = new Scanner(System.in)){
+        try (Scanner sc = new Scanner(System.in)) {
 
             Estudante estudante = new Estudante();
             Curso curso = new Curso();
@@ -89,71 +89,36 @@ public class Main {
             estudante.setNome(sc.nextLine());
             System.out.println("Favor inserir o CPF do aluno:");
             estudante.setCpf(sc.nextLine());
-            if(!(validaCpf(estudante.getCpf()))){
+            if (!(validaCpf(estudante.getCpf()))) {
                 System.out.println("Cpf inválido!");
                 return;
             }
 
-            System.out.println("Favor inserir o nome ou o código do curso do estudante:");
-            String busca = sc.nextLine();
-            curso.setNome(busca);
-            curso.setCodigo(Integer.parseInt(busca));
-            listaCursos = cursoBanco.buscarTudo();
-            
-            for(int i=0; i<listaCursos.size(); i++){
-                if( listaCursos.get(i).getNome().equals(curso.getNome()) ||
-                    listaCursos.get(i).getCodigo()==curso.getCodigo())
-                    {
-                        listaCursosBuscados.add(listaCursos.get(i));
-                    }
-            }
-
-            if(listaCursosBuscados.size()==1){
-                System.out.println("Curso selecionado:\n"+curso.toString());
-            }else{
-                int indiceCurso = 0;
-                for(int i=0; i<listaCursosBuscados.size(); i++){
-                    System.out.println(i+"- "+curso.toString());
-                }
-                System.out.println("Favor inserir o número do curso desejado:");
-                try {
-                    indiceCurso = Integer.parseInt(sc.nextLine());
-                }catch(NumberFormatException e){
-                    e.printStackTrace();
-                    return;
-                }
-                if(listaCursosBuscados.size()-1>indiceCurso){
-                    curso=listaCursosBuscados.get(indiceCurso);
-                    estudante.setCurso(curso);
-                    estudanteBanco.adicionar(estudante);
-                }else{
-                    System.out.println("Número inválido");
-                }
-            }
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void atualizaEstudanteCurso(){
+    private static void atualizaEstudanteCurso() {
         try (Scanner sc = new Scanner(System.in)){
                        
             EstudanteBanco estudanteBanco = new EstudanteBanco();
             CursoBanco cursoBanco = new CursoBanco();
-            Estudante estudanteCorrigindo = new Estudante();
+            Estudante estudante = new Estudante();
             ArrayList<Estudante> listaEstudantes = estudanteBanco.buscarTudo();
             ArrayList<Curso> listaCursos = cursoBanco.buscarTudo();
             ArrayList<Curso> listaCursosBuscados = new ArrayList<Curso>();
             Curso cursoMatriculando = new Curso();
 
             System.out.println("Favor inserir o cpf do estudante cuja matrícula deve ser refeita:");
-            estudanteCorrigindo.setCpf(sc.nextLine());
+            estudante.setCpf(sc.nextLine());
             for(int i=0; i<listaEstudantes.size(); i++) {
-                if(estudanteCorrigindo.getCpf().equals(listaEstudantes.get(i).getCpf())) {
-                    estudanteCorrigindo = listaEstudantes.get(i);
+                if(estudante.getCpf().equals(listaEstudantes.get(i).getCpf())) {
+                    estudante = listaEstudantes.get(i);
+                    break;
                 }
             }
-            if(estudanteCorrigindo.getNome().equals(null)) {
+            if(estudante.getNome().equals(null)) {
                 System.out.println("Estudante não encontrado.");
                 return;
             }
@@ -164,25 +129,118 @@ public class Main {
                     listaCursosBuscados.add(listaCursos.get(i));
                 }
             }
+            if(listaCursosBuscados.size()==0){
+                System.out.println("Curso não encontrado");
+            }else{
+                if(listaCursosBuscados.size()==1){
+                    estudante.setCurso(cursoMatriculando);
+                    estudanteBanco.alterarPorId(estudante.getId(), estudante);
+                    return;
+                }else{
+                    
+                }
+            }
             System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static boolean validaCpf(String cpf){
-        if(cpf.length()==11){
+    private static boolean validaCpf(String cpf) {
+        if (cpf.length()==11) {
             int cpfDigito;
             int digitoVerificador = Integer.parseInt(cpf.substring(9, 10));
             int somaDigitos = 0;
-            for(int i=0; i<9; i++){
+            for (int i=0; i<9; i++) {
                 cpfDigito = Character.getNumericValue(cpf.charAt(i));
                 somaDigitos += cpfDigito*10-i;
             }
-            if(11-(somaDigitos%11)==digitoVerificador){
+            if (11-(somaDigitos%11)==digitoVerificador) {
                 return true;
             }
         }
         return false;
+    }
+ 
+    private static Estudante validaEstudante(Estudante estudante) {
+        
+        EstudanteBanco estudanteBanco = new EstudanteBanco();
+        ArrayList<Estudante> listaEstudantes = estudanteBanco.buscarTudo();
+        ArrayList<Estudante> listaEstudantesBuscados = new ArrayList<Estudante>();
+
+        for (int i=0; i<listaEstudantes.size(); i++) {
+            if (estudante.hasId(listaEstudantes.get(i).getId()) ||
+                estudante.getNome().equals(listaEstudantes.get(i).getNome()) ||
+                estudante.getCpf()==listaEstudantes.get(i).getCpf()) 
+            {
+                listaEstudantesBuscados.add(listaEstudantes.get(i));
+            }
+        }
+
+        if (listaEstudantesBuscados.size()>1) {
+            System.out.println("Estudantes equivalentes:");
+            for (int i=0; i<listaEstudantesBuscados.size(); i++) {
+                System.out.println(i+"- "+listaEstudantesBuscados.get(i).toString());
+            }
+            System.out.println("Favor inserir o número do estudante desejado.");
+
+            try (Scanner sc = new Scanner(System.in)) {
+                int indiceEstudante = Integer.parseInt(sc.nextLine());
+                return listaEstudantesBuscados.get(indiceEstudante);
+            } catch (Exception e) {
+                System.out.println("Erro!");
+                e.printStackTrace();
+            }
+        } else {
+            if (listaEstudantesBuscados.size() == 0) {
+                System.out.println("Nenhum estudante equivalente.");
+                return null;
+            } else {
+                return listaEstudantesBuscados.get(0);
+            }
+        }
+
+        return null;
+    }
+
+    private static Curso validaCurso(Curso curso) {
+
+        CursoBanco cursoBanco = new CursoBanco();
+        ArrayList<Curso> listaCursos = cursoBanco.buscarTudo();
+        ArrayList<Curso> listaCursosBuscados = new ArrayList<Curso>();
+
+        for (int i=0; i<listaCursos.size(); i++){
+            if (curso.hasId(listaCursos.get(i).getId()) ||
+                curso.getNome().equals(listaCursos.get(i).getNome()) ||
+                curso.getCodigo()==listaCursos.get(i).getCodigo()) 
+            {
+                listaCursosBuscados.add(listaCursos.get(i));
+            }
+        }
+
+        if (listaCursosBuscados.size()>1) {
+            System.out.println("Cursos equivalentes:");
+            for (int i=0; i<listaCursosBuscados.size(); i++) {
+                System.out.println(i+"- "+listaCursosBuscados.get(i).toString());
+            }
+
+            System.out.println("Favor inserir o número do curso desejado.");
+            try (Scanner sc = new Scanner(System.in)) {
+                int indiceCurso = Integer.parseInt(sc.nextLine());
+                return listaCursosBuscados.get(indiceCurso);
+            } catch (Exception e) {
+                System.out.println("Erro!");
+                e.printStackTrace();
+            }
+
+        } else {
+            if (listaCursosBuscados.size()==0) {
+                System.out.println("Nenhum curso encontrado.");
+                return null;
+            } else {
+                return listaCursosBuscados.get(0);
+            }
+        }
+        return null;
     }
 }
