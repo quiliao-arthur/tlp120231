@@ -62,6 +62,10 @@ public class Estudante {
         return "Estudante:\n Nome: "+nome+", Cpf: "+cpf+", "+curso.toString();
     }
 
+    public String toStringSemCurso() {
+        return "Estudante:\n Nome: "+nome+", Cpf: "+cpf;
+    }
+
     public boolean hasId(int id){
         if(this.id==id){
             return true;

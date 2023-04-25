@@ -8,7 +8,7 @@ CREATE TABLE Curso(
 CREATE TABLE Estudante(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(40),
-    cpf VARCHAR(11),
+    cpf VARCHAR(11) UNIQUE,
     idCurso INTEGER,
     CONSTRAINT (fk_cursa) FOREIGN KEY (idCurso) REFERENCES Curso(id)
 );
