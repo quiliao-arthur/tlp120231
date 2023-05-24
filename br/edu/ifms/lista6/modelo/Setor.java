@@ -27,4 +27,6 @@ public class Setor {
     public ArrayList<Equipamento> getEquipamentos() {return equipamentos;}
 
     public void setEquipamentos(ArrayList<Equipamento> equipamentos) {this.equipamentos=equipamentos;}
+
+    public Setor() {id=0; nome=""; descricao=""; equipamentos = new ArrayList<Equipamento>();}
 }

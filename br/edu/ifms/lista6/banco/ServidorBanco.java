@@ -30,7 +30,7 @@ public class ServidorBanco {
         return servidor;
     }
 
-    public Servidor buscaPorId(int id) {
+    public Servidor buscarPorId(int id) {
         
         Servidor servidor = new Servidor();
 

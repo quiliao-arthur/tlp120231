@@ -27,4 +27,6 @@ public class Servidor {
     public ArrayList<Equipamento> getEquipamentos() {return equipamentos;}
 
     public void setEquipamentos(ArrayList<Equipamento> equipamentos) {this.equipamentos=equipamentos;}
+
+    public Servidor() {id=0; nome=""; siape=0; equipamentos = new ArrayList<Equipamento>();}
 }

@@ -29,4 +29,29 @@ public class SetorBanco {
         }
         return setor;
     }
+
+    public Setor buscarPorId(int id) {
+        Setor setor = new Setor();
+
+        try {
+            Connection connection = ConectaBanco.getConnection();
+            String sql = "SELECT * FROM Setor WHERE id = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                setor.setId(resultSet.getInt("id"));
+                setor.setNome(resultSet.getString("nome"));
+                setor.setDescricao(resultSet.getString("descricao"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return setor;
+    }
 }

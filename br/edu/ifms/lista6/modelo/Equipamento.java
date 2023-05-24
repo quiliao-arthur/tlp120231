@@ -36,4 +36,5 @@ public class Equipamento {
 
     public Servidor getServidor() {return servidor;}
 
+    public void setServidor(Servidor servidor) {this.servidor=servidor;}
 }
